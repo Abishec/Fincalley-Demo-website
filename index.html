@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinValley 9.0 - Fund Management Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>FinValley 9.0</h1>
+                <p>Fund Management Platform</p>
+            </div>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="demo@finvalley.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="demo2025" required>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full-width">Sign In</button>
+                <div class="demo-credentials">
+                    <p><strong>Demo Credentials:</strong></p>
+                    <p>Email: demo@finvalley.com</p>
+                    <p>Password: demo2025</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="main-app" class="main-app hidden">
+        <!-- Header Navigation -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 class="app-title">FinValley 9.0</h1>
+                    <span class="version-badge">Demo v1.0</span>
+                </div>
+                <nav class="main-nav">
+                    <button class="nav-btn active" data-module="dashboard">Dashboard</button>
+                    <button class="nav-btn" data-module="carry">Carry Center</button>
+                    <button class="nav-btn" data-module="tokenization">Tokenization</button>
+                    <button class="nav-btn" data-module="data">Data Hub</button>
+                    <button class="nav-btn" data-module="ai">AI Platform</button>
+                </nav>
+                <div class="header-right">
+                    <button class="theme-toggle" id="theme-toggle">🌙</button>
+                    <button class="btn btn--outline btn--sm" id="logout-btn">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Module -->
+        <main id="dashboard-module" class="module">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2>Fund Management Dashboard</h2>
+                    <p class="dashboard-subtitle">Real-time portfolio overview and system metrics</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <!-- Key Metrics Cards -->
+                    <div class="metrics-row">
+                        <div class="metric-card">
+                            <h3>Total AUM</h3>
+                            <div class="metric-value">$1.15B</div>
+                            <div class="metric-change positive">+5.2% YTD</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Active Funds</h3>
+                            <div class="metric-value">3</div>
+                            <div class="metric-status">2 requiring decisions</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Total LPs</h3>
+                            <div class="metric-value">47</div>
+                            <div class="metric-status">3 new this quarter</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>System Uptime</h3>
+                            <div class="metric-value">99.8%</div>
+                            <div class="metric-status">Excellent</div>
+                        </div>
+                    </div>
+
+                    <!-- Active Funds -->
+                    <div class="dashboard-section">
+                        <h3>Active Funds</h3>
+                        <div class="funds-list">
+                            <div class="fund-item">
+                                <div class="fund-info">
+                                    <h4>Fund ABC Infrastructure (2015)</h4>
+                                    <p>$680M NAV • 1.7x TVPI • 1.3 DPI</p>
+                                </div>
+                                <div class="fund-status">
+                                    <span class="status status--warning">Continuation Decision Required</span>
+                                </div>
+                            </div>
+                            <div class="fund-item">
+                                <div class="fund-info">
+                                    <h4>Fund XYZ Private Equity (2019)</h4>
+                                    <p>$380M NAV • IPO-ready portfolio</p>
+                                </div>
+                                <div class="fund-status">
+                                    <span class="status status--info">Tokenization Candidate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="dashboard-section">
+                        <h3>Quick Actions</h3>
+                        <div class="quick-actions">
+                            <button class="action-btn" data-action="carry">
+                                <div class="action-icon">⚖️</div>
+                                <div class="action-text">
+                                    <h4>Carry Analysis</h4>
+                                    <p>Analyze continuation fund carry models</p>
+                                </div>
+                            </button>
+                            <button class="action-btn" data-action="tokenization">
+                                <div class="action-icon">🪙</div>
+                                <div class="action-text">
+                                    <h4>Tokenize Fund</h4>
+                                    <p>Access liquidity through tokenization</p>
+                                </div>
+                            </button>
+                            <button class="action-btn" data-action="data">
+                                <div class="action-icon">📊</div>
+                                <div class="action-text">
+                                    <h4>Data Pipeline</h4>
+                                    <p>Monitor data quality and operations</p>
+                                </div>
+                            </button>
+                            <button class="action-btn" data-action="ai">
+                                <div class="action-icon">🤖</div>
+                                <div class="action-text">
+                                    <h4>AI Analytics</h4>
+                                    <p>Generate insights and reports</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- System Alerts -->
+                    <div class="dashboard-section">
+                        <h3>System Alerts</h3>
+                        <div class="alerts-list">
+                            <div class="alert alert--warning">
+                                <strong>Fund ABC:</strong> Continuation decision deadline approaching (30 days remaining)
+                            </div>
+                            <div class="alert alert--info">
+                                <strong>Data Pipeline:</strong> Successfully processed 2.4TB of data today
+                            </div>
+                            <div class="alert alert--success">
+                                <strong>Compliance:</strong> All regulatory reports submitted on time
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Carry Decision Center Module -->
+        <main id="carry-module" class="module hidden">
+            <div class="container">
+                <div class="module-header">
+                    <h2>Carry Decision Center</h2>
+                    <p>Interactive workspace for continuation fund decisions</p>
+                </div>
+
+                <div class="carry-workspace">
+                    <!-- Fund Overview -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Fund ABC Infrastructure - Performance Overview</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="fund-metrics-grid">
+                                <div class="metric-item">
+                                    <label>Committed Capital</label>
+                                    <span class="metric-value">$400M</span>
+                                </div>
+                                <div class="metric-item">
+                                    <label>Current NAV</label>
+                                    <span class="metric-value">$680M</span>
+                                </div>
+                                <div class="metric-item">
+                                    <label>TVPI</label>
+                                    <span class="metric-value">1.7x</span>
+                                </div>
+                                <div class="metric-item">
+                                    <label>DPI</label>
+                                    <span class="metric-value">1.3x</span>
+                                </div>
+                                <div class="metric-item">
+                                    <label>RVPI</label>
+                                    <span class="metric-value">0.4x</span>
+                                </div>
+                                <div class="metric-item">
+                                    <label>Assets</label>
+                                    <span class="metric-value">2 Infrastructure</span>
+                                </div>
+                            </div>
+                            <div class="performance-chart-container" style="position: relative; height: 300px; margin-top: 20px;">
+                                <canvas id="performance-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LP Decision Interface -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>LP Exit/Roll Decisions</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="decision-controls">
+                                <div class="slider-group">
+                                    <label>LP Exit Percentage: <span id="exit-percent">30%</span></label>
+                                    <input type="range" id="exit-slider" min="0" max="100" value="30" class="slider">
+                                </div>
+                                <div class="slider-group">
+                                    <label>LP Roll Percentage: <span id="roll-percent">70%</span></label>
+                                    <input type="range" id="roll-slider" min="0" max="100" value="70" class="slider">
+                                </div>
+                            </div>
+                            <div class="lp-breakdown">
+                                <h4>LP Breakdown by Type</h4>
+                                <div class="lp-types">
+                                    <div class="lp-type">
+                                        <span class="lp-name">State Teachers Pension</span>
+                                        <span class="lp-commitment">$50M</span>
+                                        <span class="status status--success">Rolling</span>
+                                    </div>
+                                    <div class="lp-type">
+                                        <span class="lp-name">University Endowment</span>
+                                        <span class="lp-commitment">$25M</span>
+                                        <span class="status status--error">Exiting</span>
+                                    </div>
+                                    <div class="lp-type">
+                                        <span class="lp-name">Johnson Family Office</span>
+                                        <span class="lp-commitment">$15M</span>
+                                        <span class="status status--info">Pending</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carry Models Comparison -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Carry Model Comparison</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="carry-models">
+                                <div class="carry-model">
+                                    <h4>Reset Carry</h4>
+                                    <p class="model-subtitle">Limited Crystallization</p>
+                                    <div class="model-metrics">
+                                        <div class="model-metric">
+                                            <label>GP Proceeds</label>
+                                            <span>$84.8M</span>
+                                        </div>
+                                        <div class="model-metric">
+                                            <label>LP Proceeds</label>
+                                            <span>$1,153.1M</span>
+                                        </div>
+                                        <div class="model-metric">
+                                            <label>LP Approval</label>
+                                            <span>75%</span>
+                                        </div>
+                                    </div>
+                                    <div class="risk-indicator medium">Medium Risk</div>
+                                </div>
+                                <div class="carry-model">
+                                    <h4>Catchup Carry</h4>
+                                    <p class="model-subtitle">Future Performance Only</p>
+                                    <div class="model-metrics">
+                                        <div class="model-metric">
+                                            <label>GP Proceeds</label>
+                                            <span>$73.7M</span>
+                                        </div>
+                                        <div class="model-metric">
+                                            <label>LP Proceeds</label>
+                                            <span>$1,294.0M</span>
+                                        </div>
+                                        <div class="model-metric">
+                                            <label>LP Approval</label>
+                                            <span>90%</span>
+                                        </div>
+                                    </div>
+                                    <div class="risk-indicator low">Low Risk</div>
+                                </div>
+                                <div class="carry-model recommended">
+                                    <div class="recommended-badge">RECOMMENDED</div>
+                                    <h4>Blended Carry + GP Rollover</h4>
+                                    <p class="model-subtitle">Optimal Alignment</p>
+                                    <div class="model-metrics">
+                                        <div class="model-metric">
+                                            <label>GP Proceeds</label>
+                                            <span>$166.2M</span>
+                                        </div>
+                                        <div class="model-metric">
+                                            <label>LP Proceeds</label>
+                                            <span>$1,160.9M</span>
+                                        </div>
+                                        <div class="model-metric">
+                                            <label>LP Approval</label>
+                                            <span>85%</span>
+                                        </div>
+                                    </div>
+                                    <div class="risk-indicator medium-low">Medium-Low Risk</div>
+                                </div>
+                            </div>
+                            <div class="carry-actions">
+                                <button class="btn btn--primary">Generate Term Sheet</button>
+                                <button class="btn btn--outline">Export Excel Package</button>
+                                <button class="btn btn--outline">Sensitivity Analysis</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Tokenization Hub Module -->
+        <main id="tokenization-module" class="module hidden">
+            <div class="container">
+                <div class="module-header">
+                    <h2>Tokenization Hub</h2>
+                    <p>Complete tokenization workspace for fund liquidity solutions</p>
+                </div>
+
+                <div class="tokenization-workspace">
+                    <!-- Framework Selection -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Framework Selection</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="frameworks-grid">
+                                <div class="framework-card">
+                                    <h4>Public Blockchain</h4>
+                                    <div class="framework-score">64%</div>
+                                    <div class="framework-metrics">
+                                        <div class="metric-bar">
+                                            <label>Liquidity</label>
+                                            <div class="bar"><div class="bar-fill" style="width: 95%"></div></div>
+                                            <span>95%</span>
+                                        </div>
+                                        <div class="metric-bar">
+                                            <label>Compliance</label>
+                                            <div class="bar"><div class="bar-fill" style="width: 40%"></div></div>
+                                            <span>40%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="framework-card">
+                                    <h4>Private Blockchain</h4>
+                                    <div class="framework-score">75%</div>
+                                    <div class="framework-metrics">
+                                        <div class="metric-bar">
+                                            <label>Liquidity</label>
+                                            <div class="bar"><div class="bar-fill" style="width: 60%"></div></div>
+                                            <span>60%</span>
+                                        </div>
+                                        <div class="metric-bar">
+                                            <label>Compliance</label>
+                                            <div class="bar"><div class="bar-fill" style="width: 90%"></div></div>
+                                            <span>90%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="framework-card recommended">
+                                    <div class="recommended-badge">RECOMMENDED</div>
+                                    <h4>Hybrid Framework</h4>
+                                    <div class="framework-score">80%</div>
+                                    <div class="framework-metrics">
+                                        <div class="metric-bar">
+                                            <label>Liquidity</label>
+                                            <div class="bar"><div class="bar-fill" style="width: 85%"></div></div>
+                                            <span>85%</span>
+                                        </div>
+                                        <div class="metric-bar">
+                                            <label>Compliance</label>
+                                            <div class="bar"><div class="bar-fill" style="width: 85%"></div></div>
+                                            <span>85%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="framework-card">
+                                    <h4>Off-Chain + On-Chain</h4>
+                                    <div class="framework-score">81%</div>
+                                    <div class="framework-metrics">
+                                        <div class="metric-bar">
+                                            <label>Liquidity</label>
+                                            <div class="bar"><div class="bar-fill" style="width: 70%"></div></div>
+                                            <span>70%</span>
+                                        </div>
+                                        <div class="metric-bar">
+                                            <label>Compliance</label>
+                                            <div class="bar"><div class="bar-fill" style="width: 95%"></div></div>
+                                            <span>95%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fund Selection & Token Configuration -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Fund XYZ - Tokenization Configuration</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="fund-summary">
+                                <div class="fund-detail">
+                                    <label>Fund Name</label>
+                                    <span>Fund XYZ Private Equity</span>
+                                </div>
+                                <div class="fund-detail">
+                                    <label>Current NAV</label>
+                                    <span>$380M</span>
+                                </div>
+                                <div class="fund-detail">
+                                    <label>Challenge</label>
+                                    <span>Stalled IPO market</span>
+                                </div>
+                                <div class="fund-detail">
+                                    <label>Solution</label>
+                                    <span>NAV-Based Fund Tokens</span>
+                                </div>
+                            </div>
+                            <div class="token-config">
+                                <div class="form-group">
+                                    <label class="form-label">Token Type</label>
+                                    <select class="form-control">
+                                        <option selected>NAV-Based Fund Tokens (Recommended)</option>
+                                        <option>Feeder Fund Tokens</option>
+                                        <option>Single-Asset Tokens</option>
+                                        <option>Multi-Asset Token Baskets</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Minimum Investment</label>
+                                    <input type="text" class="form-control" value="$250,000">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Transfer Restrictions</label>
+                                    <select class="form-control">
+                                        <option selected>Accredited Investors Only</option>
+                                        <option>Qualified Institutional Buyers</option>
+                                        <option>Open Market</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Trading Platform -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Secondary Trading Platform</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="trading-interface">
+                                <div class="order-book">
+                                    <h4>Order Book - Fund XYZ Tokens</h4>
+                                    <div class="order-book-table">
+                                        <div class="order-row header">
+                                            <span>Size</span>
+                                            <span>Price</span>
+                                            <span>Type</span>
+                                        </div>
+                                        <div class="order-row bid">
+                                            <span>$500K</span>
+                                            <span>0.85x NAV</span>
+                                            <span>BID</span>
+                                        </div>
+                                        <div class="order-row bid">
+                                            <span>$250K</span>
+                                            <span>0.83x NAV</span>
+                                            <span>BID</span>
+                                        </div>
+                                        <div class="order-row ask">
+                                            <span>$750K</span>
+                                            <span>0.92x NAV</span>
+                                            <span>ASK</span>
+                                        </div>
+                                        <div class="order-row ask">
+                                            <span>$1M</span>
+                                            <span>0.95x NAV</span>
+                                            <span>ASK</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="trading-actions">
+                                    <button class="btn btn--primary">Place Order</button>
+                                    <button class="btn btn--outline">Request Quote</button>
+                                    <button class="btn btn--outline">View Analytics</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Data Operations Center Module -->
+        <main id="data-module" class="module hidden">
+            <div class="container">
+                <div class="module-header">
+                    <h2>Data Operations Center</h2>
+                    <p>Comprehensive data management and quality monitoring</p>
+                </div>
+
+                <div class="data-workspace">
+                    <!-- Data Pipeline Console -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Data Pipeline Status</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="pipeline-flow">
+                                <div class="pipeline-stage active">
+                                    <div class="stage-icon">📥</div>
+                                    <div class="stage-info">
+                                        <h4>Data Ingestion</h4>
+                                        <p>2.4TB processed today</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pipeline-arrow">→</div>
+                                <div class="pipeline-stage active">
+                                    <div class="stage-icon">✅</div>
+                                    <div class="stage-info">
+                                        <h4>Validation & Cleansing</h4>
+                                        <p>94% data quality score</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 94%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pipeline-arrow">→</div>
+                                <div class="pipeline-stage active">
+                                    <div class="stage-icon">⚙️</div>
+                                    <div class="stage-info">
+                                        <h4>Normalization</h4>
+                                        <p>Standardizing formats</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 87%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pipeline-arrow">→</div>
+                                <div class="pipeline-stage">
+                                    <div class="stage-icon">📤</div>
+                                    <div class="stage-info">
+                                        <h4>Publishing</h4>
+                                        <p>Ready for consumption</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 72%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROI Tracking -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Implementation ROI Tracking</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="roi-metrics">
+                                <div class="roi-metric">
+                                    <h4>Implementation Cost</h4>
+                                    <div class="metric-value">$2.5M</div>
+                                    <p>18-month timeline</p>
+                                </div>
+                                <div class="roi-metric">
+                                    <h4>Annual Benefits</h4>
+                                    <div class="metric-value">$1.8M</div>
+                                    <p>60% manual reduction</p>
+                                </div>
+                                <div class="roi-metric">
+                                    <h4>3-Year ROI</h4>
+                                    <div class="metric-value positive">240%</div>
+                                    <p>Excellent return</p>
+                                </div>
+                                <div class="roi-metric">
+                                    <h4>Error Reduction</h4>
+                                    <div class="metric-value">75%</div>
+                                    <p>Quality improvement</p>
+                                </div>
+                            </div>
+                            <div class="roi-chart-container" style="position: relative; height: 300px; margin-top: 20px;">
+                                <canvas id="roi-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Sources & Quality -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Data Sources & Quality Monitoring</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="data-sources">
+                                <div class="source-item">
+                                    <div class="source-info">
+                                        <h4>Bloomberg Terminal</h4>
+                                        <p>Market data and pricing</p>
+                                    </div>
+                                    <div class="source-status">
+                                        <span class="status status--success">Connected</span>
+                                        <span class="quality-score">98%</span>
+                                    </div>
+                                </div>
+                                <div class="source-item">
+                                    <div class="source-info">
+                                        <h4>Custodian Bank</h4>
+                                        <p>Holdings and transactions</p>
+                                    </div>
+                                    <div class="source-status">
+                                        <span class="status status--success">Connected</span>
+                                        <span class="quality-score">96%</span>
+                                    </div>
+                                </div>
+                                <div class="source-item">
+                                    <div class="source-info">
+                                        <h4>Fund Administrator</h4>
+                                        <p>NAV and performance data</p>
+                                    </div>
+                                    <div class="source-status">
+                                        <span class="status status--success">Connected</span>
+                                        <span class="quality-score">92%</span>
+                                    </div>
+                                </div>
+                                <div class="source-item">
+                                    <div class="source-info">
+                                        <h4>Legal Documents</h4>
+                                        <p>Agreements and compliance</p>
+                                    </div>
+                                    <div class="source-status">
+                                        <span class="status status--warning">Processing</span>
+                                        <span class="quality-score">87%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- AI Intelligence Platform Module -->
+        <main id="ai-module" class="module hidden">
+            <div class="container">
+                <div class="module-header">
+                    <h2>AI Intelligence Platform</h2>
+                    <p>Advanced analytics and transparency tools</p>
+                </div>
+
+                <div class="ai-workspace">
+                    <!-- AI Assistant -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>AI Assistant</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="ai-chat">
+                                <div class="chat-messages">
+                                    <div class="chat-message user">
+                                        <p>Why did Fund ABC's NAV change last month?</p>
+                                    </div>
+                                    <div class="chat-message ai">
+                                        <p>Fund ABC's NAV increased by $12M (1.8%) last month due to:</p>
+                                        <ul>
+                                            <li>Infrastructure Asset A: Fair value adjustment +$8.5M (improved toll revenue)</li>
+                                            <li>Infrastructure Asset B: Fair value adjustment +$4.2M (completed expansion)</li>
+                                            <li>Currency hedging: -$0.7M (USD strengthening)</li>
+                                        </ul>
+                                        <p>Would you like to see the detailed attribution analysis?</p>
+                                    </div>
+                                </div>
+                                <div class="chat-input">
+                                    <input type="text" class="form-control" placeholder="Ask me anything about your funds...">
+                                    <button class="btn btn--primary">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LP Portal Features -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>LP Portal Experience</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="portal-features">
+                                <div class="feature-item">
+                                    <div class="feature-icon">📊</div>
+                                    <div class="feature-info">
+                                        <h4>Real-time NAV Updates</h4>
+                                        <p>Live portfolio valuation with detailed attribution</p>
+                                    </div>
+                                    <button class="btn btn--outline btn--sm">View Demo</button>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">💰</div>
+                                    <div class="feature-info">
+                                        <h4>Distribution Tracking</h4>
+                                        <p>Projection modeling and cash flow analysis</p>
+                                    </div>
+                                    <button class="btn btn--outline btn--sm">View Demo</button>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">🔐</div>
+                                    <div class="feature-info">
+                                        <h4>Document Vault</h4>
+                                        <p>Secure access to reports and legal documents</p>
+                                    </div>
+                                    <button class="btn btn--outline btn--sm">View Demo</button>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">🤖</div>
+                                    <div class="feature-info">
+                                        <h4>AI-Powered Q&A</h4>
+                                        <p>Natural language queries about performance</p>
+                                    </div>
+                                    <button class="btn btn--outline btn--sm">View Demo</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Generation -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Automated Report Generation</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="report-generator">
+                                <div class="report-type">
+                                    <h4>ILPA Template Report</h4>
+                                    <p>Standardized quarterly investor report</p>
+                                    <div class="report-actions">
+                                        <button class="btn btn--primary">Generate Report</button>
+                                        <button class="btn btn--outline">Preview</button>
+                                    </div>
+                                </div>
+                                <div class="report-type">
+                                    <h4>SEC Form D Filing</h4>
+                                    <p>Automated regulatory compliance filing</p>
+                                    <div class="report-actions">
+                                        <button class="btn btn--primary">Generate Filing</button>
+                                        <button class="btn btn--outline">Review Draft</button>
+                                    </div>
+                                </div>
+                                <div class="report-type">
+                                    <h4>Custom Analytics Report</h4>
+                                    <p>Tailored insights and performance analysis</p>
+                                    <div class="report-actions">
+                                        <button class="btn btn--primary">Build Report</button>
+                                        <button class="btn btn--outline">Templates</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Analytics -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Portfolio Performance Analytics</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="analytics-dashboard">
+                                <div class="analytics-chart-container" style="position: relative; height: 300px;">
+                                    <canvas id="performance-analytics-chart"></canvas>
+                                </div>
+                                <div class="analytics-insights">
+                                    <h4>AI-Generated Insights</h4>
+                                    <ul>
+                                        <li>Fund ABC outperforming infrastructure benchmark by 180 bps</li>
+                                        <li>Asset concentration risk identified in telecommunications sector</li>
+                                        <li>Optimal exit window predicted for Q2 2025 based on market conditions</li>
+                                        <li>ESG compliance score improved to 92% this quarter</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
